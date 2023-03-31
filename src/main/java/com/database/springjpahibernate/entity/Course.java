@@ -30,4 +30,9 @@ public class Course {
     public Long getId() {
         return id;
     }
+
+    @Override
+    public String toString() {
+        return String.format("Course[%s]", name);
+    }
 }
