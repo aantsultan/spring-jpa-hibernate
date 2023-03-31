@@ -10,3 +10,15 @@ spring:
         bootstrap-mode: default
   jpa:
     defer-datasource-initialization: true
+    properties:
+      hibernate:
+        generate_statistics: true
+        format_sql: true #do not implement for production !
+    show-sql: true
+
+logging:
+  level:
+    org:
+      hibernate:
+        stat: debug
+        type: trace
