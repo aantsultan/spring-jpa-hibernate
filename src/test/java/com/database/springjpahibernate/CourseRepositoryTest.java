@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
 
 @SpringBootTest
 public class CourseRepositoryTest {
@@ -18,9 +19,16 @@ public class CourseRepositoryTest {
     CourseRepository repository;
 
     @Test
-    public void helloWorld(){
+    public void findById_basic(){
         Course course = repository.findById(10001L);
         assertEquals("Aant", course.getName());
+    }
+
+    @Test
+    @DirtiesContext // springboot automatic reset data after delete
+    public void deleteById_basic(){
+        repository.deleteById(10002L);
+        assertNull(repository.findById(10002L));
     }
 
 }
