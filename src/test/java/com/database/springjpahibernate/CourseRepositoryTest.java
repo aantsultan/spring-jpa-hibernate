@@ -31,4 +31,19 @@ public class CourseRepositoryTest {
         assertNull(repository.findById(10002L));
     }
 
+    @Test
+    @DirtiesContext // springboot automatic reset data after delete
+    public void save_basic(){
+        // get a course
+        Course course = repository.findById(10001L);
+        assertEquals("Aant", course.getName());
+
+        //update details
+        course.setName("Aant Cool");
+        repository.save(course);
+
+        Course course1 = repository.findById(10001L);
+        assertEquals("Aant Cool", course1.getName());
+    }
+
 }
