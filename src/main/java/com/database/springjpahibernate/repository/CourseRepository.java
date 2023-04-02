@@ -44,9 +44,27 @@ public class CourseRepository {
 
         em.clear(); // it will not update because .clear will clear the em transaction
 
+//        em.detach(course); course will not update with .detach
+//        em.detach(course2); course2 will not update with .detach
+
         course.setName("JPA - Updated"); // while running, course.setName still update even em.persist(course) if there is no .clear or .detach before
         em.flush();
         course2.setName("Angular Js in 100 Steps - Updated"); // while running, course.setName still update even em.persist(course)
+        em.flush();
+    }
+
+    public void playWithEntityManager2(){
+        Course course = new Course("Web Services in 100 Steps");
+        em.persist(course);
+        Course course2 = new Course("Angular Js in 100 Steps");
+        em.persist(course2);
+        em.flush();
+
+        course.setName("JPA - Updated");
+        course2.setName("Angular Js in 100 Steps - Updated");
+
+        em.refresh(course); // will not update course into database
+
         em.flush();
     }
 

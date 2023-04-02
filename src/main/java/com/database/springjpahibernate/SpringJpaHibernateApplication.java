@@ -22,6 +22,7 @@ public class SpringJpaHibernateApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		repository.playWithEntityManager();
+//		repository.playWithEntityManager();
+		repository.playWithEntityManager2();
 	}
 }
