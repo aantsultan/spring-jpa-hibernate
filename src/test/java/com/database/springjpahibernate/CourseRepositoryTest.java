@@ -46,4 +46,10 @@ public class CourseRepositoryTest {
         assertEquals("Aant Cool", course1.getName());
     }
 
+    @Test
+    @DirtiesContext // springboot automatic reset data after delete
+    public void playWithEntityManager(){
+        repository.playWithEntityManager();
+    }
+
 }
