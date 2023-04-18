@@ -43,4 +43,25 @@ public class JPQLTest {
         List<Course> resultList = query.getResultList();
         logger.info("SELECT c FROM Course c WHERE name like '%A' -> {}", resultList);
     }
+
+    @Test
+    public void jpql_basic_named_query(){
+        List resultList = em.createNamedQuery("query_get_all_courses").getResultList();
+        logger.info("SELECT c FROM Course c -> {}", resultList);
+    }
+
+    @Test
+    public void jpql_typed_named_query(){
+        TypedQuery<Course> query = em.createNamedQuery("query_get_all_courses", Course.class);
+        List<Course> resultList = query.getResultList();
+        logger.info("SELECT c FROM Course c -> {}", resultList);
+    }
+
+    @Test
+    public void jpql_where_named_query(){
+        TypedQuery<Course> query =
+                em.createNamedQuery("query_get_a_first_char", Course.class);
+        List<Course> resultList = query.getResultList();
+        logger.info("SELECT c FROM Course c WHERE name like '%A' -> {}", resultList);
+    }
 }
