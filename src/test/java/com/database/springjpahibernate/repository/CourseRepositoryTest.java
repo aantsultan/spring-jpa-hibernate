@@ -1,4 +1,4 @@
-package com.database.springjpahibernate;
+package com.database.springjpahibernate.repository;
 
 import com.database.springjpahibernate.entity.Course;
 import com.database.springjpahibernate.repository.CourseRepository;
