@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -22,16 +23,18 @@ public class StudentRepositoryTest {
     EntityManager em;
 
     @Test
-    public void retrieveStudentAndPassportDetails(){
+    public void retrieveStudentAndPassportDetailsWithEager(){
         Student student = em.find(Student.class, 20001L);
         logger.info("student -> {}", student);
         logger.info("student passport -> {}", student.getPassport());
     }
 
     @Test
-    public void findById_basic() {
-        Student student = repository.findById(20001L);
-        assertEquals("Aant", student.getName());
+    @Transactional
+    public void retrieveStudentAndPassportDetailsWithLazy(){
+        Student student = em.find(Student.class, 20001L);
+        logger.info("student -> {}", student);
+        logger.info("student passport -> {}", student.getPassport());
     }
 
 }
