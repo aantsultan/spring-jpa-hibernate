@@ -45,4 +45,28 @@ public class StudentRepository {
         em.persist(student);
     }
 
+    public void complexOperation(){
+        // in hibernate, persistence context = session
+
+        // Database Operation 1 - Retrieve Student
+        Student student = em.find(Student.class, 20001L);
+        em.persist(student);
+        // persistence context (student)
+
+        // Database Operation 2 - Retrieve Passport
+        Passport passport = student.getPassport();
+        em.persist(passport);
+        // persistence context (student, passport)
+
+        // Database Operation 3 - Update Passport
+        passport.setNumber("E123459");
+        em.merge(passport);
+        // persistence context (student, passport++)
+
+        // Database Operation 4 - Update Student
+        student.setName("Aant - Updated");
+        em.merge(student);
+        // persistence context (student++, passport++)
+    }
+
 }

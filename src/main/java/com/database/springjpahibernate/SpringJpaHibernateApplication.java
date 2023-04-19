@@ -30,7 +30,8 @@ public class SpringJpaHibernateApplication implements CommandLineRunner {
 //		repository.playWithEntityManager2();
 //		repository.playWithEntityManager3();
 
-		studentRepository.saveStudentWithPassport();
+//		studentRepository.saveStudentWithPassport();
+		studentRepository.complexOperation();
 	}
 
 }
