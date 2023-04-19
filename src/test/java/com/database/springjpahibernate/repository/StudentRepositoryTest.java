@@ -46,4 +46,12 @@ public class StudentRepositoryTest {
         repository.complexOperation();
     }
 
+    @Test
+    @Transactional
+    public void retrievePassportAndAssociatedStudent(){
+        Passport passport = em.find(Passport.class, 40001L);
+        logger.info("passport -> {}", passport);
+        logger.info("student -> {}", passport.getStudent());
+    }
+
 }
