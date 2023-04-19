@@ -3,6 +3,7 @@ package com.database.springjpahibernate.entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -15,6 +16,9 @@ public class Student {
     @GeneratedValue
     private Long id;
     private String name;
+
+    @OneToOne
+    private Passport passport;
 
     public Student() {
     }
