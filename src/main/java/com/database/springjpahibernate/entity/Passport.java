@@ -1,9 +1,6 @@
 package com.database.springjpahibernate.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -17,6 +14,13 @@ public class Passport {
     private Long id;
     @Column(nullable = false)
     private String number;
+
+    /**
+     * "mappedBy" is used for to not create new column Student_Id in Passport Entity and prevent duplicate information
+     * between Student and Passport at the table
+     */
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "passport")
+    private Student student;
 
     public Passport() {
     }
@@ -35,6 +39,14 @@ public class Passport {
 
     public Long getId() {
         return id;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
     }
 
     @Override
